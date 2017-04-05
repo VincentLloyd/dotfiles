@@ -1,24 +1,20 @@
 # zsh
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-
+# —————————————————————————
 alias reload=". ~/.zshrc"
 
 # tmux
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-
+# —————————————————————————
 # tab completion can be used to view and attach existing sessions
 alias tma="tmux attach -d -t"
 alias kat="killall tmux"
 
 # macos
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-
+# —————————————————————————
 # show / hide system files in finder
 show="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
-# -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-
+# —————————————————————————
 # tramtracker ruby gem - display timetables
 alias tram-home="tramtracker 3401"
 alias tram-city="tramtracker 1362"
@@ -32,3 +28,4 @@ alias grep="grep --color=auto"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+

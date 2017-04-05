@@ -3,6 +3,9 @@ export TERM=xterm-256color
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
