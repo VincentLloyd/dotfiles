@@ -61,7 +61,7 @@ ZSH_THEME=powerlevel9k/powerlevel9k
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z)
+plugins=(git ssh-agent z)
 
 # z plugin
 . ~/.oh-my-zsh/plugins/z/z.sh
@@ -89,6 +89,9 @@ source $ZSH/oh-my-zsh.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# ssh-agent forwarding support
+zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 # DEFAULT_USER="cockatoo"
 
