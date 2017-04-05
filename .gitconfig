@@ -1,0 +1,5 @@
+[user]
+	name = Vincent Lloyd
+	email = vincent.lloyd@protonmail.com
+[core]
+	excludesfile = ~/.gitignore_global
