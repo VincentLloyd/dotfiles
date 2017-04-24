@@ -1,30 +1,43 @@
-# zsh
+# ZSH
 # —————————————————————————
-alias reload=". ~/.zshrc"
 
-# tmux
+# reload zsh settings and restart powerline daemon
+alias reload=". ~/.zshrc; powerline-daemon --replace"
+
+# TMUX
 # —————————————————————————
+
 # tab completion can be used to view and attach existing sessions
 alias tma="tmux attach -d -t"
 alias kat="killall tmux"
 
-# macos
+# MACOS
 # —————————————————————————
-# show / hide system files in finder
-show="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
+# show / hide system files in finder
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# DOTFILES
 # —————————————————————————
-# tramtracker ruby gem - display timetables
-alias tram-home="tramtracker 3401"
-alias tram-city="tramtracker 1362"
 
 # dotfiles git alias
 alias .cfg="/usr/bin/git --git-dir=/Users/cockatoo/.cfg/ --work-tree=/Users/cockatoo"
 
+# SYS CONFIG
+# —————————————————————————
+
 # make grep more user friendly by highlighting matches
 alias grep="grep --color=auto"
 
+# cd easier
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+
+# GENERAL
+# —————————————————————————
+
+# tramtracker ruby gem - display timetables
+alias tram-fitz="tramtracker 3401"
+alias tram-city="tramtracker 1362"
