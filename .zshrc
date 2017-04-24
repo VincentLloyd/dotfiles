@@ -1,114 +1,73 @@
-export TERM=xterm-256color
+# PATH
+# —————————————————————————
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# if shell in tmux, clear path and reconstruct
+if [ -f /etc/profile ]; then
+    PATH=""
+    source /etc/profile
+fi
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# remove duplicate $FPATH dirs
+typeset -U fpath
 
-# Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+# if directory not present, prepend it to $PATH
+pathPrepend() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="$1${PATH:+":$PATH"}"
+    fi
+}
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME=powerlevel9k/powerlevel9k
-# alt themes
-# agnoster
+# python dir
+pathPrepend $HOME/Library/Python/3.6/bin
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# rbenv dir
+pathPrepend $HOME/.rbenv/shims
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# enable rbenv command line completion
+. $HOME/.rbenv/completions/rbenv.zsh
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# ALIASES
+# —————————————————————————
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# load custom aliases
+source $HOME/.aliases
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+# OH-MY-ZSH
+# —————————————————————————
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# path to oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# PLUGINS
-# ____________________________________________________________
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent z)
-
-# z plugin
-. ~/.oh-my-zsh/plugins/z/z.sh
-
-# ____________________________________________________________
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+# plugin list
+plugins=(colored-man-pages extract git ruby ssh-agent z)
 
 # ssh-agent forwarding support
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
-# DEFAULT_USER="cockatoo"
+# z plugin
+. $HOME/.oh-my-zsh/plugins/z/z.sh
 
-# ALIASES
-# ____________________________________________________________
+# thefuck plugin
+eval $(thefuck --alias) 
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
+# load oh-my-zsh settings
+source $ZSH/oh-my-zsh.sh
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# load zsh syntax highlighting plugin
+source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# load custom aliases
-source ~/.aliases
+# POWERLINE
+# —————————————————————————
 
-# load zsh syntax highlighting plugin -
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# initialise powerline daemon
+powerline-daemon -q
+
+# set powerline env variables
+export POWERLINE_CONFIG_COMMAND=$HOME/Library/Python/3.6/bin/powerline-config
+export POWERLINE_COMMAND=$HOME/Library/Python/3.6/bin/powerline
+
+# powerline config - load powerline for zsh
+# [ -r FILE ] True if FILE exists and is readable.
+if [[ -r $HOME/Library/Python/3.6/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    . $HOME/Library/Python/3.6/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
+fi
