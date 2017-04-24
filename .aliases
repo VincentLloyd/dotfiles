@@ -38,6 +38,6 @@ alias ....="cd ../../.."
 # GENERAL
 # —————————————————————————
 
-# tramtracker ruby gem - display timetables
-alias tram-fitz="tramtracker 3401"
-alias tram-city="tramtracker 1362"
+# tramtracker
+alias tram-fit="tramtracker 3401"
+alias tram-cit="tramtracker 1362"
