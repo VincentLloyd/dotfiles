@@ -18,11 +18,14 @@ alias kat="killall tmux"
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
+# colourise terminal text output
+alias cat="pygmentize -g"
+
 # DOTFILES
 # —————————————————————————
 
 # dotfiles git alias
-alias .cfg="/usr/bin/git --git-dir=/Users/cockatoo/.cfg/ --work-tree=/Users/cockatoo"
+alias .cfg="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 # SYS CONFIG
 # —————————————————————————
@@ -39,5 +42,5 @@ alias ....="cd ../../.."
 # —————————————————————————
 
 # tramtracker
-alias tram-fit="tramtracker 3401"
-alias tram-cit="tramtracker 1362"
+alias tram_city="tramtracker 3401"
+alias tram_fitz="tramtracker 1362"

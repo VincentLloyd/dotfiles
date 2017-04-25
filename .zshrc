@@ -1,5 +1,5 @@
 # PATH
-# —————————————————————————
+# ——————————————————————————————
 
 # if shell in tmux, clear path and reconstruct
 if [ -f /etc/profile ]; then
@@ -8,7 +8,7 @@ if [ -f /etc/profile ]; then
 fi
 
 # remove duplicate $FPATH dirs
-typeset -U fpath
+# typeset -U fpath
 
 # if directory not present, prepend it to $PATH
 pathPrepend() {
@@ -26,23 +26,23 @@ pathPrepend $HOME/.rbenv/shims
 # enable rbenv command line completion
 . $HOME/.rbenv/completions/rbenv.zsh
 
-# ALIASES
-# —————————————————————————
+# CUSTOM ALIASES & FUNCTIONS
+# ——————————————————————————————
 
 # load custom aliases
 source $HOME/.aliases
 
+# load custom functions
+source $HOME/.functions
+
 # OH-MY-ZSH
-# —————————————————————————
+# ——————————————————————————————
 
 # path to oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
 
 # plugin list
 plugins=(colored-man-pages extract git ruby ssh-agent z)
-
-# ssh-agent forwarding support
-zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 # z plugin
 . $HOME/.oh-my-zsh/plugins/z/z.sh
@@ -57,7 +57,7 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # POWERLINE
-# —————————————————————————
+# ——————————————————————————————
 
 # initialise powerline daemon
 powerline-daemon -q
@@ -67,7 +67,11 @@ export POWERLINE_CONFIG_COMMAND=$HOME/Library/Python/3.6/bin/powerline-config
 export POWERLINE_COMMAND=$HOME/Library/Python/3.6/bin/powerline
 
 # powerline config - load powerline for zsh
-# [ -r FILE ] True if FILE exists and is readable.
+# [ -r FILE ] returns TRUE if FILE exists and is readable.
 if [[ -r $HOME/Library/Python/3.6/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh ]]; then
     . $HOME/Library/Python/3.6/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 fi
+
+# ssh-agent forwarding support
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+
